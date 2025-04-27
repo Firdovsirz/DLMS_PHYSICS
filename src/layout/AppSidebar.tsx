@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router";
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
+import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
 import { useCallback, useEffect, useRef, useState } from "react";
 
 // Assume these icons are imported from an icon library
@@ -52,6 +53,11 @@ const navItems: NavItem[] = [
       { name: "Berk cisimler", path: "/buttons", pro: false },
       { name: "Nano texnologiya", path: "/images", pro: false },
     ],
+  },
+  {
+    icon: <LocalLibraryIcon />,
+    name: "Kitabxanaçılar",
+    path: "/librarian",
   },
 ];
 
@@ -163,20 +169,20 @@ const AppSidebar: React.FC = () => {
               onClick={() => handleSubmenuToggle(index, menuType)}
               className={`menu-item group ${
                 openSubmenu?.type === menuType && openSubmenu?.index === index
-                  ? "menu-item-active"
+                  ? "bg-blue-500 text-white"
                   : "menu-item-inactive"
               } cursor-pointer ${
                 !isExpanded && !isHovered
                   ? "lg:justify-center"
                   : "lg:justify-start"
-              }`}
+              } hover:bg-blue-500 hover:text-white`}
             >
               <span
-                className={`menu-item-icon-size  ${
+                className={`menu-item-icon-size ${
                   openSubmenu?.type === menuType && openSubmenu?.index === index
-                    ? "menu-item-icon-active"
+                    ? "text-white"
                     : "menu-item-icon-inactive"
-                }`}
+                } group-hover:text-white`}
               >
                 {nav.icon}
               </span>
@@ -199,15 +205,17 @@ const AppSidebar: React.FC = () => {
               <Link
                 to={nav.path}
                 className={`menu-item group ${
-                  isActive(nav.path) ? "menu-item-active" : "menu-item-inactive"
-                }`}
+                  isActive(nav.path)
+                    ? "bg-blue-500 text-white"
+                    : "menu-item-inactive"
+                } hover:bg-blue-500 hover:text-white`}
               >
                 <span
                   className={`menu-item-icon-size ${
                     isActive(nav.path)
-                      ? "menu-item-icon-active"
+                      ? "text-white"
                       : "menu-item-icon-inactive"
-                  }`}
+                  } group-hover:text-white`}
                 >
                   {nav.icon}
                 </span>
